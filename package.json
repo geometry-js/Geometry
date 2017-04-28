@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "JavaScript development environment Pluralsight course by Cory House",
   "scripts": {
+    "prestart": "babel-node ./buildScripts/startMessage.js",
+    "start": "npm-run-all --parallel security-check open:src",
+    "open:src": "babel-node ./buildScripts/srcServer.js",
+    "security-check": "nsp check",
+    "localtunnel": "lt --port 3000 --subdomain lubka",
+    "share": "npm-run-all --parallel open:src localtunnel"
   },
   "author": "Cory House",
   "license": "MIT",
@@ -13,7 +19,8 @@
     "babel-cli": "6.16.0",
     "babel-core": "6.17.0",
     "babel-loader": "6.2.5",
-    "babel-preset-latest": "6.16.0",
+    "babel-preset-es2017": "^6.24.1",
+    "babel-preset-latest": "6.14.0",
     "babel-register": "6.16.3",
     "chai": "3.5.0",
     "chalk": "1.1.3",
