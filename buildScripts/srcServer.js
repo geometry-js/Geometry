@@ -15,6 +15,10 @@ app.use(require('webpack-dev-middleware')(compiler, {
   publicPath: config.output.publicPath
 }));
 
+// ETag is a caching feature of HTTP (https://ru.wikipedia.org/wiki/HTTP_ETag).
+// For whatever reason the boilerplate doesn't use this properly with express
+// As a result we alwaus receive 304 instead of 200, which is obviously wrong,
+// So till I understand how ETag works I just disable it.
 app.disable('etag');
 
 app.get('/', function(req, res) {
